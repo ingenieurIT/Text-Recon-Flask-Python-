@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title>Reconnaissance de l'ecriture</title>
+      <link type="text/css" rel="stylesheet" href="/static/style/final.css">
+  </head>
+  <body>
+    <main>
+        <section class="glass">
+            <h1 align="center">Bienvenue {{ user }}</h1><br>
+            <p><b>TextRecognizer</b> est une application de reconnaissance
+            d'ecriture saisie au clavier ou à main levée. Ceci fonctionne en choisissant des fichiers scannés. Pour
+            reconnaitre des textes ecrits à main levée, il faudrait que les écritures ne soient pas penchées</p>
+                <br><br>
+
+                {% if msg %}
+                <h1>{{ msg }}</h1>
+                {% endif %}
+
+                <h2 align="center">Etape1: Choisir un fichier à transformer<br>dans le repertoire</h2>
+                <br><br>
+
+                <form method=post enctype=multipart/form-data action="{{ url_for('upload_page') }}">
+                  <p align="center"><input class="filed" type=file name=file>
+                      <br><br><h3>Etape2: Reconnaissance de texte</h3>
+                      <input type=submit class="btn" value=Transformer></p>
+                </form>
+                <br>
+                <h1 align="center">Resultat:</h1>
+
+                {% if img_src %}
+                  <p align="center">Avant</p>
+                  <p align="center"><img src="{{ img_src }}"></p>
+                {% endif %}
+
+                {% if result_recon %}<br>
+                    <form action="{{ url_for('enregistrer') }}" method="post" enctype="multipart/form-data">
+                        <label>
+                            <p align="center">Apres</p>
+                            <textarea id="resultat_texte" name="mytextarea">{{ result_recon }}</textarea>
+                            <h3>Etape3: Enregistrement</h3>
+                            <input align="center" type=submit class="btn1" value="enregistrer dans la BD">
+                         </label>
+                    </form>
+                {% else %}
+                 <br><br><p align="center">le resultat sera afficher ici</p>
+                {% endif %}
+            </div>
+            <h3>Etape4: Consultation</h3>
+         <a href="load"><input class="enr" type="submit" value="consulter les enregistrements"></a>
+        </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title>Reconnaissance de l'ecriture</title>
+      <link type="text/css" rel="stylesheet" href="/static/style/style1.css">
+  </head>
+  <body>
+  <div class="container">
+      <h1 align="center">Bienvenue {{ user }}</h1>
+                            <br><br>
+
+                            {% if msg %}
+                            <h1>{{ msg }}</h1>
+                            {% endif %}
+
+                            <h1 align="center">Choisir un fichier a transformer<br>dans le repertoire</h1>
+                            <br><br>
+
+        <form method=post enctype=multipart/form-data>
+                                         <p align="center">
+                                         <label class="btn-ch">Choisir fichier</label>
+                                         <input id="file-ip-1" type=file name=file>
+                                         <button type=submit class="btn" value=Transformer>Transformer</button></p>
+                                    </form>
+    <div class="container-body">
+        <div class="main-body">
+            <div class="cards">
+                <div class="row row-1">
+
+
+                     <div class="col">
+                         <div class="balance-card">
+                             <h1 align="center">Resultat:</h1>
+                             {% if img_src %}
+                                  <div id="avant">
+                                      <img src="{{ img_src }}">
+                                  </div>
+                            {% endif %}
+                         </div>
+                     </div>
+
+                    <div class="col">
+                         <div class="latest-activity">
+                            {% if result_recon %}
+                              <div id="apres">
+                                <form action="{{ url_for('enregistrer') }}" method="post" enctype="multipart/form-data">
+                                    <label>
+                                        <textarea id="resultat_texte" name="mytextarea">{{ result_recon }}</textarea>
+                                    </label>
+                                  <input align="center" type=submit class="btn1" value="enregistrer">
+                                </form>
+                              </div>
+                         </div>
+                    </div>
+
+                        <div class="col">
+                            <div class="debit-card">
+
+                            </div>
+                        </div>
+                </div>
+
+                {#<main>
+                    <section class="glass">#}
+                       {# <div class="centrer">
+                           <div class="contenu" align="center">#}
+            {#                    <div class="imagesrc">#}
+            {#                        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>#}
+            {#                        <div align="center" class="text">Aucun fichier selectionne</div>#}
+            {#                    </div>#}
+
+                            <br>
+{##}
+{##}
+{#                            {% if result_recon %}#}
+{#                              <div id="apres">#}
+{#                                <form action="{{ url_for('enregistrer') }}" method="post" enctype="multipart/form-data">#}
+{#                                    <label>#}
+{#                                        <textarea id="resultat_texte" name="mytextarea">{{ result_recon }}</textarea>#}
+{#                                    </label>#}
+{#                                  <input align="center" type=submit class="btn1" value="enregistrer">#}
+{#                                </form>#}
+{#                              </div>#}
+
+
+
+                                {% else %}
+                                 <br><br><p align="center">le resultat sera afficher ici</p>
+                                {% endif %}
+                            <form action="{{ url_for('enregistrer') }}" method="post">
+                            <input type="submit" value="enregistrer">
+                            </form>
+                         <a href="load">cliquez ici pour consulter les enregistrements</a>
+                    {#        </section>#}
+                    {#    </main>#}
+             </div>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>
+    
